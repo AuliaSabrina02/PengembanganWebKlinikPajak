@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+Use App\Http\Controllers\layoutsabrinaController;
+Use App\Http\Controllers\ListProdukController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('list_product');
 });
+
+Route::get('/layoutlistaulia', [layoutsabrinaController::class, 'tampilkan']);
+Route::get('/listproduk', [ListProdukController::class, 'show']);
