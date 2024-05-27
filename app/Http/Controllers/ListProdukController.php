@@ -23,4 +23,16 @@ class ListProdukController extends Controller
 
         return redirect()->back()->with('success', 'Data berhasil disimpan!');
     }
+    
+    public function delete($id){
+
+        $produk = Produk::where('id', $id)->first();
+        if ($produk) {
+            $produk->delete();
+            return redirect()->back()->with('succes', 'produk berhasil di hapus.');
+        }else{
+            return redirect()->back()->with('error', 'produk tidak ditemukan');
+        }
+    }
+
 }

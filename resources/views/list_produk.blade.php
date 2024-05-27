@@ -16,6 +16,7 @@
                     <th class="px-3 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Nama produk</th>
                     <th class="px-3 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Deskripsi produk</th>
                     <th class="px-3 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Harga produk</th>
+                    <th class="px-3 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Action</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
@@ -25,6 +26,13 @@
                     <td class="px-3 py-2 whitespace-nowrap text-xs text-gray-500">{{ $item->nama }}</td>
                     <td class="px-3 py-2 whitespace-nowrap text-xs text-gray-500">{{ $item->deskripsi }}</td>
                     <td class="px-3 py-2 whitespace-nowrap text-xs text-gray-500">{{ $item->harga }}</td>
+                    <td class="px-3 py-2 whitespace-nowrap text-xs text-gray-500">
+                        <form action="{{ route('produk.delete', $item->id) }}" method="POST" style="display:inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500 hover:text-red-700 ml-2" onclick="return confirm('Are you sure you want to delete {{ $item }}?')">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -47,6 +55,10 @@
                 <label for="harga" class="block text-sm font-medium text-gray-700">Harga:</label>
                 <input type="number" id="harga" name="harga" class="mt-1 p-3 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:border-red-500" placeholder="Masukkan harga produk">
             </div>
+            <div class="mb-6">
+                <label for="action" class="block text-sm font-medium text-gray-700">Action:</label>
+                <input type="text" id="action" name="action" class="mt-1 p-3 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:border-red-500" placeholder="Masukkan action produk">
+            </div>
             <div class="text-center">
                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">Simpan</button>
             </div>
@@ -54,5 +66,6 @@
     </div>
 </body>
 </html>
+
 
 
